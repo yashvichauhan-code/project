@@ -49,13 +49,10 @@ void viewsummary();
 void generatereport();
 
 void addvictim() {
-
     printf("\n------ Add New Victim ------\n");
-
     int v;
     printf("Enter number of victims you want to add: ");
     scanf("%d", &v);
-
     struct victim details[v];
 
     FILE *fp = fopen("victims.txt", "a");
@@ -63,7 +60,6 @@ void addvictim() {
         printf("Error Opening File\n");
         return;
     }
-
     for (int i = 0; i < v; i++) {
 
         printf("\nVictim %d:\n", i+1);
@@ -85,8 +81,7 @@ void addvictim() {
 
         printf("Enter severity (1=Stable, 2=Moderate, 3=Critical): ");
         scanf("%d", &details[i].severity);
-
-        // Store full record in victims.txt
+        //Store full record in victims.txt
         fprintf(fp, "%s %d %.2f %.2f %s %d\n",
                 details[i].name,
                 details[i].age,
@@ -97,7 +92,6 @@ void addvictim() {
 
         printf("Victim added successfully.\n");
     }
-
     fclose(fp);
 }
 
