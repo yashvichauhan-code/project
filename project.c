@@ -95,6 +95,12 @@ void addvictim() {
     fclose(fp);
 }
 
+void addvolunteer(){
+    printf("\n------ Add New Volunteer ------\n");
+    int v;
+    printf("Enter the number of volunteers you want to add: ");
+    scanf("%d", &v);
+}
 
 int main(){
     coverpg();
