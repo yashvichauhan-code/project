@@ -114,6 +114,19 @@ void addvictim() {
 
 void addvolunteer(){
     printf("\n------ Add New Volunteer ------\n");
+
+    printf("\nDisaster Type: %s\n", disaster_type);
+
+    if (strcmp(disaster_type, "flood") == 0) {
+        printf("Suggested Roles: boat-operator / swimmer / rescuer / medic\n");
+    }
+    else if (strcmp(disaster_type, "earthquake") == 0) {
+        printf("Suggested Roles: debris-removal / medic / structural-rescuer\n");
+    }
+    else if (strcmp(disaster_type, "landslide") == 0) {
+        printf("Suggested Roles: excavation-team / rescuer / medic\n");
+    }
+    
     int v;
     printf("Enter the number of volunteers you want to add: ");
     scanf("%d", &v);
