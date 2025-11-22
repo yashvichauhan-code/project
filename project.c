@@ -28,13 +28,13 @@ struct victim{
     int severity;
 };
 
-/*struct volunteer{
+struct volunteer{
     char name[20];
     char role[20];
     float latitude, longitude;
 };
 
-struct resource{
+/*struct resource{
     char item[20];
     char type[20];
     int quantity;
@@ -100,6 +100,41 @@ void addvolunteer(){
     int v;
     printf("Enter the number of volunteers you want to add: ");
     scanf("%d", &v);
+    struct volunteer details[v];
+
+    FILE *fp = fopen("volunteers.txt", "a");
+    if (fp == NULL) {
+        printf("Error Opening File\n");
+        return;
+    }
+
+    for(int i=0; i<v; i++){
+
+        printf("\nVolunteer %d:\n", i+1);
+
+        printf("Enter name: ");
+        scanf(" %[^\n]", details[i].name);
+
+        printf("Enter role: ");
+        scanf(" %[^\n]", &details[i].role);
+
+        printf("Enter latitude: ");
+        scanf("%f", &details[i].latitude);
+
+        printf("Enter longitude: ");
+        scanf("%f", &details[i].longitude);
+
+        fprintf(fp, "%s %d %.2f %.2f %s %d\n",
+                details[i].name,
+                details[i].role,
+                details[i].latitude,
+                details[i].longitude);
+
+        printf("Volunteer added successfully.\n");
+    }
+    fclose(fp);
+
+
 }
 
 int main(){
@@ -117,8 +152,8 @@ int main(){
 
         switch(choice){
             case 1: addvictim(); break;
-            /*case 2: addvolunteer(); break;
-            case 3: addresource(); break;
+            case 2: addvolunteer(); break;
+            /*case 3: addresource(); break;
             case 4: viewallrecords(); break;
             case 5: assignvolunteerandresource(); break;
             case 6: viewsummary(); break;
