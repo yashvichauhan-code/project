@@ -116,7 +116,7 @@ void addvolunteer(){
         scanf(" %[^\n]", details[i].name);
 
         printf("Enter role: ");
-        scanf(" %[^\n]", &details[i].role);
+        scanf(" %[^\n]", details[i].role);
 
         printf("Enter latitude: ");
         scanf("%f", &details[i].latitude);
@@ -124,7 +124,7 @@ void addvolunteer(){
         printf("Enter longitude: ");
         scanf("%f", &details[i].longitude);
 
-        fprintf(fp, "%s %d %.2f %.2f %s %d\n",
+        fprintf(fp, "%s %s %.2f %.2f\n",
                 details[i].name,
                 details[i].role,
                 details[i].latitude,
