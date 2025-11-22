@@ -20,6 +20,9 @@ void coverpg(){
     printf("Press Enter to continue...");
     scanf("%c", &ans);
 }
+
+char disaster_type[20];
+
 struct victim{
     char name[20];
     int age;
@@ -40,6 +43,8 @@ struct volunteer{
     int quantity;
 };*/
 
+void showStatusSuggestions();
+void showRoleSuggestions();
 void addvictim();
 void addvolunteer();
 void addresource();
@@ -50,6 +55,18 @@ void generatereport();
 
 void addvictim() {
     printf("\n------ Add New Victim ------\n");
+    printf("\nDisaster Type: %s\n", disaster_type);
+
+    if (strcmp(disaster_type, "flood") == 0) {
+        printf("Suggested Status: drowned / trapped / hypothermia / stable\n");
+    }
+    else if (strcmp(disaster_type, "earthquake") == 0) {
+        printf("Suggested Status: fracture / buried / bleeding / critical\n");
+    }
+    else if (strcmp(disaster_type, "landslide") == 0) {
+        printf("Suggested Status: buried / trapped / injured / stable\n");
+    }
+
     int v;
     printf("Enter number of victims you want to add: ");
     scanf("%d", &v);
