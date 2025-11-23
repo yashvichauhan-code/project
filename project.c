@@ -171,7 +171,7 @@ void addresource(){
     printf("\n------ Add New Resource ------\n");
     printf("\nDisaster Type: %s\n", disaster_type);
     if (strcmp(disaster_type, "flood") == 0){
-        printf("Suggested aresources: boats /ropes / life-jackets / blankets /water\n");
+        printf("Suggested Resources: boats /ropes / life-jackets / blankets /water\n");
     }
     else if (strcmp(disaster_type, "landslide") == 0){
         printf("Suggested Resources: shovels / ropes / medical-kits / food packets\n");
@@ -216,7 +216,7 @@ void addresource(){
 int main(){
     coverpg();
     int choice;
-    char disaster_type[15];
+
     printf("Enter Disaster Type (flood/earthquake/landslide) :");
     scanf("%s", disaster_type);
     printf("\n=== Managing %s Relief Operations ===\n", disaster_type);
@@ -229,8 +229,8 @@ int main(){
         switch(choice){
             case 1: addvictim(); break;
             case 2: addvolunteer(); break;
-            /*case 3: addresource(); break;
-            case 4: viewallrecords(); break;
+            case 3: addresource(); break;
+            /*case 4: viewallrecords(); break;
             case 5: assignvolunteerandresource(); break;
             case 6: viewsummary(); break;
             case 7: generatereport(); break;*/
