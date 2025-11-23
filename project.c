@@ -1,7 +1,7 @@
 //Disaster Emergency & Resource Management System
 #include <stdio.h> //input,output
-/*#include <string.h> //for string copy, comparing
-#include <stdlib.h> //for exit(), malloc()
+#include <string.h> //for string copy, comparing
+/*#include <stdlib.h> //for exit(), malloc()
 #include <math.h> //coordinate distance 
 #include <time.h> //for timestamp
 #include <unistd.h> //for sleep() simulation*/
@@ -38,11 +38,11 @@ struct volunteer{
     float latitude, longitude;
 };
 
-/*struct resource{
+struct resource{
     char item[20];
     char type[20];
     int quantity;
-};*/
+};
 
 void showStatusSuggestions();
 void showRoleSuggestions();
@@ -164,10 +164,55 @@ void addvolunteer(){
         printf("Volunteer added successfully.\n");
     }
     fclose(fp);
-
-
 }
 
+void addresource(){
+
+    printf("\n------ Add New Resource ------\n");
+    printf("\nDisaster Type: %s\n", disaster_type);
+    if (strcmp(disaster_type, "flood") == 0){
+        printf("Suggested aresources: boats /ropes / life-jackets / blankets /water\n");
+    }
+    else if (strcmp(disaster_type, "landslide") == 0){
+        printf("Suggested Resources: shovels / ropes / medical-kits / food packets\n");
+    }
+    
+    int r;
+    printf("\nEnter number of resources you want to add: ");
+    scanf("%d", &r);
+
+    struct resource details[r];
+
+    FILE *fp =fopen("resource.txt", "a");
+    if (fp == NULL){
+        printf("Error Opening File!\n");
+        return;
+    }
+
+    for (int i = 0; i < r; i++) {
+
+        printf("\nResource %d:\n", i+1);
+
+        printf("Enter item name: ");
+        scanf(" %[^\n]", details[i].item);
+
+        printf("Enter type: ");
+        scanf(" %[^\n]", details[i].type);
+
+        printf("Enter quantity: ");
+        scanf("%d", &details[i].quantity);
+
+        // Store in file
+        fprintf(fp, "%s %s %d\n",
+                details[i].item,
+                details[i].type,
+                details[i].quantity);
+
+        printf("Resource added successfully.\n");
+    }
+
+    fclose(fp);
+}
 int main(){
     coverpg();
     int choice;
