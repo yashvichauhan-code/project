@@ -15,7 +15,8 @@ void coverpg(){
     printf("Sap id      : 590022585 \n");
     printf("Course      : Btech CSE \n");
     printf("Batch       : 9\n\n");
-    printf("Submitted to: Prof. Pankaj Badoni\n\n");
+    printf("Submitted to: \n");
+    printf("Name        : Pankaj Badoni\n\n");
     char ans;
     printf("Press Enter to continue...");
     scanf("%c", &ans);
