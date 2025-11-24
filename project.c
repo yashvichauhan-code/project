@@ -24,25 +24,25 @@ void coverpg(){
 
 char disaster_type[20];
 
-struct victim{
+typedef struct{
     char name[20];
     int age;
     float latitude, longitude;
     char status[20];
     int severity;
-};
+}victim;
 
-struct volunteer{
+typedef struct{
     char name[20];
     char role[20];
     float latitude, longitude;
-};
+}volunteer;
 
-struct resource{
+typedef struct {
     char item[20];
     char type[20];
     int quantity;
-};
+}resource;
 
 void showStatusSuggestions();
 void showRoleSuggestions();
@@ -71,7 +71,7 @@ void addvictim() {
     int v;
     printf("Enter number of victims you want to add: ");
     scanf("%d", &v);
-    struct victim details[v];
+    victim details[v];
 
     FILE *fp = fopen("victims.txt", "a");
     if (fp == NULL) {
@@ -131,7 +131,7 @@ void addvolunteer(){
     int v;
     printf("Enter the number of volunteers you want to add: ");
     scanf("%d", &v);
-    struct volunteer details[v];
+    volunteer details[v];
 
     FILE *fp = fopen("volunteers.txt", "a");
     if (fp == NULL) {
@@ -181,7 +181,7 @@ void addresource(){
     printf("\nEnter number of resources you want to add: ");
     scanf("%d", &r);
 
-    struct resource details[r];
+    resource details[r];
 
     FILE *fp =fopen("resource.txt", "a");
     if (fp == NULL){
