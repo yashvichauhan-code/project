@@ -212,6 +212,23 @@ void addresource(){
 
     fclose(fp);
 }
+
+void viewallrecords(){
+
+    printf("\n\n------------- VIEW ALL RECORDS ------------\n");
+
+    FILE *fp;
+
+    printf("\n------- Victim Records --------\n");
+
+    fp= foopen("victims.txt", "r");
+    if(fp == NULL){
+        printf("No vicim records found. \n");
+    }
+    else{
+        
+    }
+}
 int main(){
     coverpg();
     int choice;
