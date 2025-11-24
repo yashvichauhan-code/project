@@ -202,7 +202,6 @@ void addresource(){
         printf("Enter quantity: ");
         scanf("%d", &details[i].quantity);
 
-        // Store in file
         fprintf(fp, "%s %s %d\n",
                 details[i].item,
                 details[i].type,
