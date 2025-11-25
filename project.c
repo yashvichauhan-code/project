@@ -221,7 +221,7 @@ void viewallrecords(){
 
     printf("\n------- Victim Records --------\n");
 
-    fp= foopen("victims.txt", "r");
+    fp= fopen("victims.txt", "r");
     if(fp == NULL){
         printf("No vicim records found. \n");
     }
