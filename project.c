@@ -229,6 +229,7 @@ void viewallrecords(){
         
     }
 }
+
 int main(){
     coverpg();
     int choice;
