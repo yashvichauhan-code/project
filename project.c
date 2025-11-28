@@ -127,6 +127,7 @@ void addvictim() {
 
         printf("Victim added successfully.\n");
     }
+    printf("\nTotal %d victim(s) added in this session.\n", v);
     fclose(fp);
 }
 
@@ -179,6 +180,7 @@ void addvolunteer(){
 
         printf("Volunteer added successfully.\n");
     }
+    printf("\nTotal %d volunteer(s) added in this session.\n", v);
     fclose(fp);
 }
 
@@ -266,7 +268,9 @@ int main(){
             /*case 4: viewallrecords(); break;
             case 5: assignvolunteerandresource(); break;
             case 6: viewsummary(); break;
-            case 7: generatereport(); break;*/
+            case 7: generatereport(); 
+            default:
+                printf("Invalid choice. Please try again.\n");break;*/
         }
     }
     while (choice!=8);
