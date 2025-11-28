@@ -1,10 +1,28 @@
 //Disaster Emergency & Resource Management System
 #include <stdio.h> //input,output
 #include <string.h> //for string copy, comparing
-/*#include <stdlib.h> //for exit(), malloc()
+#include <stdlib.h> //for exit(), malloc()
 #include <math.h> //coordinate distance 
-#include <time.h> //for timestamp
-#include <unistd.h> //for sleep() simulation*/
+
+
+void getCurrentLocation(float *lat, float *lon) {
+
+    // Step 1: call API using curl and save output into temp file
+    system("curl -s \"http://ip-api.com/line/?fields=lat,lon\" > location.txt");
+
+    // Step 2: open temp file
+    FILE *fp = fopen("location.txt", "r");
+    if (fp == NULL) {
+        printf("Error: Unable to fetch location.\n");
+        return;
+    }
+
+    // Step 3: read latitude and longitude
+    fscanf(fp, "%f", lat);
+    fscanf(fp, "%f", lon);
+
+    fclose(fp);
+}
 
 void coverpg(){
     printf("--------------------------------------------------\n");
@@ -59,13 +77,13 @@ void addvictim() {
     printf("\nDisaster Type: %s\n", disaster_type);
 
     if (strcmp(disaster_type, "flood") == 0) {
-        printf("Suggested Status: drowned / trapped / hypothermia / stable\n");
+        printf("Suggested Status: drowned / trapped / hypothermia / stable\n\n");
     }
     else if (strcmp(disaster_type, "earthquake") == 0) {
-        printf("Suggested Status: fracture / buried / bleeding / critical\n");
+        printf("Suggested Status: fracture / buried / bleeding / critical\n\n");
     }
     else if (strcmp(disaster_type, "landslide") == 0) {
-        printf("Suggested Status: buried / trapped / injured / stable\n");
+        printf("Suggested Status: buried / trapped / injured / stable\n\n");
     }
 
     int v;
@@ -88,11 +106,10 @@ void addvictim() {
         printf("Enter age: ");
         scanf("%d", &details[i].age);
 
-        printf("Enter latitude: ");
-        scanf("%f", &details[i].latitude);
+        printf("\nFetching GPS coordinates automatically...\n");
+        getCurrentLocation(&details[i].latitude, &details[i].longitude);
+        printf("Location fetched: Lat = %.4f, Lon = %.4f\n", details[i].latitude, details[i].longitude);
 
-        printf("Enter longitude: ");
-        scanf("%f", &details[i].longitude);
 
         printf("Enter status: ");
         scanf(" %[^\n]", details[i].status);
@@ -149,11 +166,10 @@ void addvolunteer(){
         printf("Enter role: ");
         scanf(" %[^\n]", details[i].role);
 
-        printf("Enter latitude: ");
-        scanf("%f", &details[i].latitude);
+        printf("\nFetching GPS coordinates automatically...\n");
+        getCurrentLocation(&details[i].latitude, &details[i].longitude);
+        printf("Location fetched: Lat = %.4f, Lon = %.4f\n", details[i].latitude, details[i].longitude);
 
-        printf("Enter longitude: ");
-        scanf("%f", &details[i].longitude);
 
         fprintf(fp, "%s %s %.2f %.2f\n",
                 details[i].name,
