@@ -3,7 +3,30 @@
 #include <string.h> //for string copy, comparing
 #include <stdlib.h> //for exit(), malloc()
 #include <math.h> //coordinate distance 
+char disaster_type[20];
 
+void coverpg(){
+    printf("--------------------------------------------------\n");
+    printf("      Disaster Emergency Management System        \n");
+    printf("--------------------------------------------------\n\n");
+    printf("Submitted by: \n");
+    printf("Name        : Yashvi Singh \n");
+    printf("Sap id      : 590022585 \n");
+    printf("Course      : Btech CSE \n");
+    printf("Batch       : 9\n\n");
+    printf("Submitted to: \n");
+    printf("Name        : Pankaj Badoni\n\n");
+    char ans;
+    printf("Press Enter to continue...");
+    scanf("%c", &ans);
+}
+
+
+void showHeader() {
+    printf("\n-------------------------------------------------------\n");
+    printf("    Disaster Emergency Management System - %s", disaster_type);
+    printf("\n-------------------------------------------------------\n");
+}
 
 void getCurrentLocation(float *lat, float *lon) {
 
@@ -22,22 +45,6 @@ void getCurrentLocation(float *lat, float *lon) {
     fscanf(fp, "%f", lon);
 
     fclose(fp);
-}
-
-void coverpg(){
-    printf("--------------------------------------------------\n");
-    printf("      Disaster Emergency Management System        \n");
-    printf("--------------------------------------------------\n\n");
-    printf("Submitted by: \n");
-    printf("Name        : Yashvi Singh \n");
-    printf("Sap id      : 590022585 \n");
-    printf("Course      : Btech CSE \n");
-    printf("Batch       : 9\n\n");
-    printf("Submitted to: \n");
-    printf("Name        : Pankaj Badoni\n\n");
-    char ans;
-    printf("Press Enter to continue...");
-    scanf("%c", &ans);
 }
 
 char disaster_type[20];
@@ -108,7 +115,7 @@ void addvictim() {
 
         printf("\nFetching GPS coordinates automatically...\n");
         getCurrentLocation(&details[i].latitude, &details[i].longitude);
-        printf("Location fetched: Lat = %.4f, Lon = %.4f\n", details[i].latitude, details[i].longitude);
+        printf("Location fetched: \nLat = %.4f, Lon = %.4f\n", details[i].latitude, details[i].longitude);
 
 
         printf("Enter status: ");
@@ -143,7 +150,7 @@ void addvolunteer(){
         printf("Suggested Roles: debris-removal / medic / structural-rescuer\n");
     }
     else if (strcmp(disaster_type, "landslide") == 0) {
-        printf("Suggested Roles: excavation-team / rescuer / medic\n");
+        printf("Suggested Roles: excavation-team / rescuer / medic\n\n");
     }
     
     int v;
@@ -178,7 +185,7 @@ void addvolunteer(){
                 details[i].latitude,
                 details[i].longitude);
 
-        printf("Volunteer added successfully.\n");
+        printf("\n\nVolunteer added successfully.\n");
     }
     printf("\nTotal %d volunteer(s) added in this session.\n", v);
     fclose(fp);
@@ -248,13 +255,16 @@ void viewallrecords(){
     }
 }
 
+
+
 int main(){
     coverpg();
     int choice;
 
     printf("Enter Disaster Type (flood/earthquake/landslide) :");
     scanf("%s", disaster_type);
-    printf("\n=== Managing %s Relief Operations ===\n", disaster_type);
+    showHeader();
+    printf("\n====== Managing %s Relief Operations ======\n", disaster_type);
 
     do{
         printf("\n1. Add Victim\n2. Add Volunteer\n3. Add Resource\n4. View All Records\n5. Assign Volunteer & Resource\n6. View Summary\n7. Generate Report\n8. Exit\n");
