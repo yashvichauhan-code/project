@@ -6,9 +6,9 @@
 char disaster_type[20];
 
 void coverpg(){
-    printf("--------------------------------------------------\n");
-    printf("      Disaster Emergency Management System        \n");
-    printf("--------------------------------------------------\n\n");
+    printf("------------------------------------------------------\n");
+    printf("          DISASTER EMERGENCY MANAGEMENT SYSTEM         \n");
+    printf("------------------------------------------------------\n\n");
     printf("Submitted by: \n");
     printf("Name        : Yashvi Singh \n");
     printf("Sap id      : 590022585 \n");
@@ -46,8 +46,6 @@ void getCurrentLocation(float *lat, float *lon) {
 
     fclose(fp);
 }
-
-char disaster_type[20];
 
 typedef struct{
     char name[20];
@@ -240,61 +238,160 @@ void addresource(){
 
 void viewallrecords(){
 
-    printf("\n\n================ VIEW ALL RECORDS ================\n");
+    printf("\n\n================== VIEW ALL RECORDS ==================\n");
 
     FILE *fp;
 
-    printf("\n------- Victim Records --------\n");
+    //VICTIMS
+    printf("\n------------------ VICTIM RECORDS ------------------\n");
 
     fp= fopen("victims.txt", "r");
     if(fp == NULL){
         printf("No vicim records found. \n");
     }
     else{
-        char name[50], status[50];
-        int age, severity;
-        float lat,lon;
+    char name[50], status[50];
+    int age, severity;
+    float lat,lon;
         
-        printf("%-15s %-5s %-8.2f %8.2f %-12s %-8s\n", "Name", "Age", "Lat","Lon", "Status", "Severity");
-           while (fscanf(fp, "%s %d %f %f %s %d",
-                      name, &age, &lat, &lon, status, &severity) != EOF) {
+    printf("%-15s %-5s %-12s %-12s %-12s %-8s\n", "Name", "Age", "Lat","Lon", "Status", "Severity");
+    printf("----------------------------------------------------------------------------\n");
+    while (fscanf(fp, "%s %d %f %f %s %d",
+              name, &age, &lat, &lon, status, &severity) == 6) {
 
-            printf("%-15s %-5d %-8.2f %-8.2f %-12s %-8d\n",
-                   name, age, lat, lon, status, severity);
-        }
+        printf("%-15s %-5d %-12.4f %-12.4f %-12s %-8d\n",
+           name, age, lat, lon, status, severity);
+
+    }
         fclose(fp);  
         
     }
+
+    //VOLUNTEERS
+    printf("\n---------------- VOLUNTEER RECORDS -----------------\n");
+
+    fp = fopen("volunteers.txt", "r");
+    if (fp == NULL) {
+        printf("No volunteer records found.\n");
+    } else {
+
+        char name[50], role[50];
+        float lat, lon;
+
+        printf("%-15s %-15s %-8s %-8s\n",
+               "Name", "Role", "Lat", "Lon");
+        printf("---------------------------------------------------\n");
+
+        while (fscanf(fp, "%s %s %f %f",
+                      name, role, &lat, &lon) != EOF) {
+
+            printf("%-15s %-15s %-8f %-8f\n",
+                   name, role, lat, lon);
+        }
+        fclose(fp);
+    }
+
+    //RESOURCES
+    printf("\n------------------ RESOURCE RECORDS -----------------\n");
+
+    fp = fopen("resource.txt", "r");
+    if (fp == NULL) {
+        printf("No resource records found.\n");
+    } else {
+
+        char item[50], type[50];
+        int qty;
+
+        printf("%-15s %-15s %-10s\n",
+               "Item", "Type", "Quantity");
+        printf("-----------------------------------------------\n");
+
+        while (fscanf(fp, "%s %s %d",
+                      item, type, &qty) != EOF) {
+
+            printf("%-15s %-15s %-10d\n",
+                   item, type, qty);
+        }
+        fclose(fp);
+    }
+
+    printf("\n=====================================================\n");
+}
+
+int askReturnToMenu() {
+    char ch;
+
+    printf("\nDo you want to return to the main menu? (y/n): ");
+    scanf(" %c", &ch); 
+
+    if (ch == 'y' || ch == 'Y')
+        return 1;   // go back to menu
+    else
+        return 0;   // exit program
 }
 
 
 
-int main(){
+int main() {
     coverpg();
-    int choice;
 
-    printf("Enter Disaster Type (flood/earthquake/landslide) :");
+    printf("Enter Disaster Type (flood/earthquake/landslide) : ");
     scanf("%s", disaster_type);
-    showHeader();
-    printf("\n====== Managing %s Relief Operations ======\n", disaster_type);
 
-    do{
-        printf("\n1. Add Victim\n2. Add Volunteer\n3. Add Resource\n4. View All Records\n5. Assign Volunteer & Resource\n6. View Summary\n7. Generate Report\n8. Exit\n");
+    int choice;
+    int stayInMenu = 1;   // controls the loop
+
+    do {
+        showHeader();  // if you made this; else remove this line
+
+        printf("\n1. Add Victim");
+        printf("\n2. Add Volunteer");
+        printf("\n3. Add Resource");
+        printf("\n4. View All Records");
+        printf("\n5. Assign Volunteer & Resource");
+        printf("\n6. View Summary");
+        printf("\n7. Generate Report");
+        printf("\n8. Exit\n");
+
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
-        switch(choice){
-            case 1: addvictim(); break;
-            case 2: addvolunteer(); break;
-            case 3: addresource(); break;
-            case 4: viewallrecords(); break;
-            /*case 5: assignvolunteerandresource(); break;
-            case 6: viewsummary(); break;
-            case 7: generatereport(); 
+        switch (choice) {
+            case 1:
+                addvictim();
+                stayInMenu = askReturnToMenu(); break;
+            case 2:
+                addvolunteer();
+                stayInMenu = askReturnToMenu(); break;
+            case 3:
+                addresource();
+                stayInMenu = askReturnToMenu(); break;
+            case 4:
+                viewallrecords();
+                stayInMenu = askReturnToMenu(); break;
+            case 5:
+                // assignvolunteerandresource();
+                stayInMenu = askReturnToMenu(); break;
+            case 6:
+                // viewsummary();
+                stayInMenu = askReturnToMenu(); break;
+            case 7:
+                // generatereport();
+                stayInMenu = askReturnToMenu(); break;
+            case 8:
+                printf("\nExiting... Thank you for using the system.\n");
+                stayInMenu = 0;   // stop loop
+                break;
             default:
-                printf("Invalid choice. Please try again.\n");break;*/
+                printf("\nInvalid choice. Please try again.\n");
+                // stayInMenu remains 1 so menu shows again 
+                break;
         }
-    }
-    while (choice!=8);
+
+
+    } while (stayInMenu == 1);
+
     return 0;
 }
+
+
