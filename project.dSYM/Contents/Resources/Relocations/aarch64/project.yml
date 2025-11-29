@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/yashvichauhan/Desktop/c_codes/project/project'
+relocations:     []
+...

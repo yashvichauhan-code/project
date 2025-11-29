@@ -240,7 +240,7 @@ void addresource(){
 
 void viewallrecords(){
 
-    printf("\n\n------------- VIEW ALL RECORDS ------------\n");
+    printf("\n\n================ VIEW ALL RECORDS ================\n");
 
     FILE *fp;
 
@@ -275,8 +275,8 @@ int main(){
             case 1: addvictim(); break;
             case 2: addvolunteer(); break;
             case 3: addresource(); break;
-            /*case 4: viewallrecords(); break;
-            case 5: assignvolunteerandresource(); break;
+            case 4: viewallrecords(); break;
+            /*case 5: assignvolunteerandresource(); break;
             case 6: viewsummary(); break;
             case 7: generatereport(); 
             default:
