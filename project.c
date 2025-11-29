@@ -251,6 +251,18 @@ void viewallrecords(){
         printf("No vicim records found. \n");
     }
     else{
+        char name[50], status[50];
+        int age, severity;
+        float lat,lon;
+        
+        printf("%-15s %-5s %-8.2f %8.2f %-12s %-8s\n", "Name", "Age", "Lat","Lon", "Status", "Severity");
+           while (fscanf(fp, "%s %d %f %f %s %d",
+                      name, &age, &lat, &lon, status, &severity) != EOF) {
+
+            printf("%-15s %-5d %-8.2f %-8.2f %-12s %-8d\n",
+                   name, age, lat, lon, status, severity);
+        }
+        fclose(fp);  
         
     }
 }
