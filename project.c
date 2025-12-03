@@ -16,7 +16,8 @@ void coverpg(){
     printf("Submitted to: \n");
     printf("Name        : Pankaj Badoni\n\n");
     char ans;
-    
+    printf("Press Enter to continue...");
+    scanf("%c", &ans);
 }
 void showHeader() {
     printf("\n-------------------------------------------------------\n");
