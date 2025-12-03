@@ -4,7 +4,6 @@
 #include <stdlib.h> //for exit(), malloc()
 #include <math.h> //coordinate distance 
 char disaster_type[20];
-
 void coverpg(){
     printf("------------------------------------------------------\n");
     printf("          DISASTER EMERGENCY MANAGEMENT SYSTEM         \n");
@@ -17,17 +16,13 @@ void coverpg(){
     printf("Submitted to: \n");
     printf("Name        : Pankaj Badoni\n\n");
     char ans;
-    printf("Press Enter to continue...");
-    scanf("%c", &ans);
+    
 }
-
-
 void showHeader() {
     printf("\n-------------------------------------------------------\n");
     printf("    Disaster Emergency Management System - %s", disaster_type);
     printf("\n-------------------------------------------------------\n");
 }
-
 void getCurrentLocation(float *lat, float *lon) {
 
     // Step 1: call API using curl and save output into temp file
@@ -46,7 +41,6 @@ void getCurrentLocation(float *lat, float *lon) {
 
     fclose(fp);
 }
-
 typedef struct{
     char name[20];
     int age;
@@ -54,19 +48,16 @@ typedef struct{
     char status[20];
     int severity;
 }victim;
-
 typedef struct{
     char name[20];
     char role[20];
     float latitude, longitude;
 }volunteer;
-
 typedef struct {
     char item[20];
     char type[20];
     int quantity;
 }resource;
-
 void showStatusSuggestions();
 void showRoleSuggestions();
 void addvictim();
@@ -76,7 +67,6 @@ void viewallrecords();
 void assignvolunteerandresource();
 void viewsummary();
 void generatereport();
-
 void addvictim() {
     printf("\n------ Add New Victim ------\n");
     printf("\nDisaster Type: %s\n", disaster_type);
@@ -135,7 +125,6 @@ void addvictim() {
     printf("\nTotal %d victim(s) added in this session.\n", v);
     fclose(fp);
 }
-
 void addvolunteer(){
     printf("\n------ Add New Volunteer ------\n");
 
@@ -188,7 +177,6 @@ void addvolunteer(){
     printf("\nTotal %d volunteer(s) added in this session.\n", v);
     fclose(fp);
 }
-
 void addresource(){
 
     printf("\n------ Add New Resource ------\n");
@@ -235,7 +223,6 @@ void addresource(){
 
     fclose(fp);
 }
-
 void viewallrecords(){
 
     printf("\n\n================== VIEW ALL RECORDS ==================\n");
@@ -278,14 +265,14 @@ void viewallrecords(){
         char name[50], role[50];
         float lat, lon;
 
-        printf("%-15s %-15s %-8s %-8s\n",
+        printf("%-15s %-15s %-12s %-12s\n",
                "Name", "Role", "Lat", "Lon");
         printf("---------------------------------------------------\n");
 
         while (fscanf(fp, "%s %s %f %f",
-                      name, role, &lat, &lon) != EOF) {
+                              name, role, &lat, &lon) == 4) {
 
-            printf("%-15s %-15s %-8f %-8f\n",
+            printf("%-15s %-15s %-12f %-12f\n",
                    name, role, lat, lon);
         }
         fclose(fp);
@@ -317,7 +304,6 @@ void viewallrecords(){
 
     printf("\n=====================================================\n");
 }
-
 int askReturnToMenu() {
     char ch;
 
@@ -329,8 +315,6 @@ int askReturnToMenu() {
     else
         return 0;   // exit program
 }
-
-
 
 int main() {
     coverpg();
@@ -393,5 +377,3 @@ int main() {
 
     return 0;
 }
-
-
